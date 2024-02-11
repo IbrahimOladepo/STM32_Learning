@@ -1,5 +1,5 @@
 # Path to stlink folder for uploading code to board
-STLINK=~/Embedded/stlink
+STLINK=~/Embedded/stlink/build/Release/bin
 
 # Put your source files here (*.c)
 SRCS=main.c system_stm32f4xx.c

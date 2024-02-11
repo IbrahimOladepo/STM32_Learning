@@ -10,6 +10,14 @@
 
 #include "stm32f4xx.h"
 
+
+// Delay function
+void delay(void)
+{
+	for(uint32_t i = 0 ; i < 500000 ; i ++);
+}
+
+
 int main(void)
 {
   // Setup RCC peripheral clock for the LED pin's port
@@ -33,13 +41,13 @@ int main(void)
     GPIO_SetBits(GPIOA, GPIO_Pin_5);
 
     // Add some delay
-    for(long i=0; i < 168000000/30; i++){__NOP();}
+    delay();
 
     // Turn off LED
     GPIO_ResetBits(GPIOA, GPIO_Pin_5);
 
     // Add some delay
-    for(long i=0; i < 168000000/30; i++){__NOP();}
+    delay();
 
   }
 
