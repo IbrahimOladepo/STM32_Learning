@@ -27,7 +27,7 @@ int main(void)
   GPIO_InitTypeDef GPIO_InitStruct;
   GPIO_InitStruct.GPIO_Pin  = GPIO_Pin_5;
   GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
-  GPIO_InitStruct.GPIO_Speed = GPIO_Speed_2MHz;
+  GPIO_InitStruct.GPIO_Speed = GPIO_Speed_25MHz;
   GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
   GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
 
@@ -37,14 +37,8 @@ int main(void)
   while(1)
   {
     
-    // Turn on LED
-    GPIO_SetBits(GPIOA, GPIO_Pin_5);
-
-    // Add some delay
-    delay();
-
-    // Turn off LED
-    GPIO_ResetBits(GPIOA, GPIO_Pin_5);
+    // Toggle LED
+    GPIO_ToggleBits(GPIOA, GPIO_Pin_5);
 
     // Add some delay
     delay();
