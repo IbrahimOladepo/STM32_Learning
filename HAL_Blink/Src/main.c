@@ -51,6 +51,14 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  
+  // Initialize an external LED connected to pin
+  GPIO_InitTypeDef GPIO_InitStruct;
+  GPIO_InitStruct.Pin = GPIO_PIN_8;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /* Infinite loop */
   while (1)
@@ -61,7 +69,10 @@ int main(void)
     
     // Use HAL delay instead
     // Delay is in milliseconds
-    HAL_Delay(1000);    
+    HAL_Delay(1000); 
+    
+    // Toggle the external LED
+    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_8);   
     
   }
   
