@@ -9,12 +9,28 @@ SRCS += stm32f4xx_ll_rcc.c
 SRCS += stm32f4xx_ll_gpio.c
 # SRCS += stm32f4xx_usart.c
 
+# C defines
+C_DEFS =  \
+-DUSE_FULL_LL_DRIVER \
+-DHSE_VALUE=8000000 \
+-DHSE_STARTUP_TIMEOUT=100 \
+-DLSE_STARTUP_TIMEOUT=5000 \
+-DLSE_VALUE=32768 \
+-DEXTERNAL_CLOCK_VALUE=12288000 \
+-DHSI_VALUE=16000000 \
+-DLSI_VALUE=32000 \
+-DVDD_VALUE=3300 \
+-DPREFETCH_ENABLE=1 \
+-DINSTRUCTION_CACHE_ENABLE=1 \
+-DDATA_CACHE_ENABLE=1 \
+-DSTM32F401xE
+
 # Binaries will be generated with this name (.elf, .bin, .hex)
 PROJ_NAME=template
 
 # Put your STM32F4 library code directory here, change YOURUSERNAME to yours
 # STM_COMMON=/home/ibrahim/Embedded/STM32F4-Discovery
-STM_COMMON=/home/ibrahim/Embedded/STM32F401RE-Nucleo
+STM_COMMON=/home/ibrahim/Embedded
 
 # Compiler settings. Only edit CFLAGS to include other header files.
 CC=arm-none-eabi-gcc
@@ -36,6 +52,7 @@ CFLAGS += -I$(STM_COMMON)/STM32F401RE-Nucleo/Drivers/CMSIS/Include
 CFLAGS += -I$(STM_COMMON)/STM32F401RE-Nucleo/Drivers/CMSIS/Device/ST/STM32F4xx/Include
 CFLAGS += -I$(STM_COMMON)/STM32F401RE-Nucleo/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates
 CFLAGS += -I$(STM_COMMON)/STM32F401RE-Nucleo/Drivers/STM32F4xx_HAL_Driver/Inc
+CFLAGS += -I$(STM_COMMON)/STM32F401RE-Nucleo/Drivers/STM32F4xx_HAL_Driver/Src
 CFLAGS += -I$(STM_COMMON)/STM32F401RE-Nucleo/Drivers/BSP
 
 # add startup file to build
@@ -52,7 +69,7 @@ all: proj
 proj: $(PROJ_NAME).elf
 
 $(PROJ_NAME).elf: $(SRCS)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(C_DEFS) $(CFLAGS) $^ -o $@
 	$(OBJCOPY) -O ihex $(PROJ_NAME).elf $(PROJ_NAME).hex
 	$(OBJCOPY) -O binary $(PROJ_NAME).elf $(PROJ_NAME).bin
 
