@@ -272,7 +272,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 
 		for (uint8_t i = 0 ; i < 6 ; i ++){
 			HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_10);
-			delay(1);
+			delay(5);
 		}
 
 	}
@@ -281,7 +281,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 
 		for (uint8_t i = 0 ; i < 6 ; i ++){
 			HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_8);
-			delay(2);
+			delay(10);
 		}
 
 	}
@@ -289,7 +289,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 	if (GPIO_Pin == GPIO_PIN_13){
 		for (uint8_t i = 0 ; i < 6 ; i ++){
 			HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-			delay(5);
+			delay(15);
 		}
 	}
 
